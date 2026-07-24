@@ -1,3 +1,50 @@
+## Python: Data Cleaning, RFM Segmentation, Cohort Analysis & Forecasting
+
+### Overview
+The core analysis pipeline (Jupyter Notebook) covers end-to-end data cleaning of ~1M raw transaction rows, customer segmentation (RFM), retention analysis (cohorts), interactive visualizations, and a revenue forecasting model.
+
+### 1. Data Cleaning
+Starting from the raw Online Retail II dataset, the following issues were identified and resolved:
+- **Full duplicate rows** — removed (technical export error, not repeat purchases)
+- **Warehouse adjustment records** (negative quantity, no 'C' invoice prefix, Price = 0) — removed
+- **Bad debt entries** ('A'-prefixed invoices, negative prices) — removed
+- **Service StockCodes** (postage, bank charges, Amazon/CRUK fees, manual adjustments) — identified via non-numeric codes and removed, while preserving legitimate letter-coded products (e.g. `PADS`)
+- Data types fixed (`InvoiceDate` converted to datetime)
+
+**Result:** 1,024,239 clean rows retained, with all major data quality issues resolved and documented.
+
+### 2. RFM Segmentation
+Customers were segmented using Recency, Frequency, and Monetary metrics (quartile-based scoring), applied only to completed orders with a valid Customer ID.
+
+| Segment | Customers |
+|---|---|
+| Lost | 1,994 |
+| Champions | 1,746 |
+| New customers | 919 |
+| Other | 610 |
+| At Risk | 587 |
+
+**Total: 5,856 customers** across 5 segments.
+
+### 3. Cohort Retention Analysis
+Customers were grouped by their first purchase month (cohort), and a retention matrix was built showing the percentage of each cohort still active in subsequent months — visualized as an interactive heatmap.
+
+### 4. Visualizations (Plotly)
+- **Retention heatmap** — cohort month × months since first purchase
+- **Recency vs. Monetary scatter** (log scale, colored by segment, sized by frequency)
+- **Customer count by RFM segment** (bar chart)
+
+### 5. Revenue Forecast
+- **Baseline model:** linear regression on month index alone → R² ≈ 0.14 (fails to capture seasonal spikes, e.g. the pre-holiday November peak)
+- **Improved model:** added one-hot encoded calendar month as seasonal dummy variables → R² ≈ 0.97
+- **Caveat:** with only 24 monthly observations and 12 features, this carries a real overfitting risk — there's no held-out validation set to confirm true predictive accuracy on unseen future months. Forecasts for Dec 2011–Feb 2012 were sanity-checked against the same months in prior years rather than treated as fully reliable predictions.
+
+### Output
+Cleaned dataset exported as `df_clean_export.csv` for downstream SQL, Excel, and Power BI analysis.
+
+
+
+
 ## SQL Analysis: Products & Basket
 
 Performed in MySQL Workbench on the cleaned dataset exported from the Python 
@@ -73,6 +120,8 @@ for some codes (e.g. `79323G`, `79323W`). This suggests catalog data
 inconsistency as a plausible contributing factor to the elevated cancellation 
 rate, rather than necessarily a product defect.
 
+
+
 ## Power BI: Geographic Analysis
 
 ### Overview
@@ -100,6 +149,8 @@ The UK leads by far in total revenue, but not in average order size. Countries l
 
 ### Screenshot
 ![Geographic Analysis](powerbi_geo_analysis.png)
+
+
 
 ## Excel: Temporal Sales Analysis
 
