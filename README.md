@@ -115,13 +115,13 @@ A day-of-week × hour-of-day pivot table was built in Excel to explore when tran
 ### Key Findings
 
 **1. The store doesn't operate on Sundays**
-Day 7 shows only a handful of transactions (~9,800 in total revenue) compared to 1.4M–3.9M for every other day — this day was excluded from further temporal analysis to avoid skewing averages.
+Day 7 (Sunday) shows only a handful of transactions (~9,800 in total revenue) compared to 1.4M–3.9M for every other day — this day was excluded from further temporal analysis to avoid skewing averages.
 
-**2. Wednesday's peak activity shifts earlier**
-Unlike most days, which peak around midday, Wednesday's highest-revenue hour occurs earlier in the late morning rather than the usual noon peak seen elsewhere.
+**2. Monday and Tuesday peak later than the rest of the week**
+While Wednesday through Saturday all peak at 12:00, Monday and Tuesday's busiest hour is 13:00 — a one-hour lag behind the rest of the working week.
 
 **3. Monday has a compressed active window**
-Monday's revenue is concentrated in a narrower band of hours (roughly 9:00–17:00), while other weekdays show activity spread across a wider range of hours into the evening.
+Monday's revenue is concentrated in a narrower band of hours (9:00–17:00), while other weekdays show activity spread across a wider range, extending into the evening (up to 18:00–20:00).
 
 ### Screenshot
 <img width="1612" height="211" alt="{8C84F944-FDE3-4FA6-8708-F81B87249E82}" src="https://github.com/user-attachments/assets/c9ce7c1b-b5f7-49c3-b59d-e49cf61a31b5" />
