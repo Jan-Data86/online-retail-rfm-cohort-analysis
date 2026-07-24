@@ -124,4 +124,5 @@ Unlike most days, which peak around midday, Wednesday's highest-revenue hour occ
 Monday's revenue is concentrated in a narrower band of hours (roughly 9:00–17:00), while other weekdays show activity spread across a wider range of hours into the evening.
 
 ### Screenshot
-![Day-Hour Heatmap](excel_day_hour_heatmap.png)
+<img width="1612" height="211" alt="{8C84F944-FDE3-4FA6-8708-F81B87249E82}" src="https://github.com/user-attachments/assets/c9ce7c1b-b5f7-49c3-b59d-e49cf61a31b5" />
+
