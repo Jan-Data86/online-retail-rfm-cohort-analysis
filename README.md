@@ -72,3 +72,31 @@ across rows — duplicates with different spacing and even empty descriptions
 for some codes (e.g. `79323G`, `79323W`). This suggests catalog data 
 inconsistency as a plausible contributing factor to the elevated cancellation 
 rate, rather than necessarily a product defect.
+
+## Power BI: Geographic Analysis
+
+### Overview
+Geographic distribution of sales was analyzed using Power BI Desktop, based on the cleaned dataset (`df_clean_export.csv`) exported from the Python pipeline. Two map visuals were built to compare total revenue against average order value across countries, revealing distinct customer behavior patterns by market.
+
+### Measures (DAX)
+
+```dax
+Total Price = SUMX(df_clean_export, df_clean_export[Price] * df_clean_export[Quantity])
+
+Average Order Value = [Total Price] / DISTINCTCOUNT(df_clean_export[Invoice])
+```
+
+### Visuals
+- **Total Revenue by Country** — bubble map sized by total revenue per country
+- **Average Order Value by Country** — bubble map sized by average order value per country
+
+| Metric | Top Countries |
+|---|---|
+| Total Revenue | United Kingdom (dominant), followed by Netherlands, EIRE, Germany |
+| Average Order Value | Australia, Singapore, Brazil, Netherlands |
+
+### Key Insight
+The UK leads by far in total revenue, but not in average order size. Countries like Australia and Singapore show smaller sales volumes with much larger average orders — a pattern consistent with retail buyers in the UK versus wholesale/B2B customers abroad consolidating fewer, bigger purchases.
+
+### Screenshot
+![Geographic Analysis](powerbi_geo_analysis.png)
