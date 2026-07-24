@@ -100,3 +100,28 @@ The UK leads by far in total revenue, but not in average order size. Countries l
 
 ### Screenshot
 ![Geographic Analysis](powerbi_geo_analysis.png)
+
+## Excel: Temporal Sales Analysis
+
+### Overview
+A day-of-week × hour-of-day pivot table was built in Excel to explore when transactions happen most, using `SUMIFS`/PivotTable on the cleaned export. A heatmap conditional formatting layer was applied on top to visually surface patterns.
+
+### Methodology
+- Rows: day of week (1–7)
+- Columns: hour of day (6:00–21:00)
+- Values: sum of `TotalPrice`
+- Conditional formatting (color scale) applied to highlight peak activity cells
+
+### Key Findings
+
+**1. The store doesn't operate on Sundays**
+Day 7 shows only a handful of transactions (~9,800 in total revenue) compared to 1.4M–3.9M for every other day — this day was excluded from further temporal analysis to avoid skewing averages.
+
+**2. Wednesday's peak activity shifts earlier**
+Unlike most days, which peak around midday, Wednesday's highest-revenue hour occurs earlier in the late morning rather than the usual noon peak seen elsewhere.
+
+**3. Monday has a compressed active window**
+Monday's revenue is concentrated in a narrower band of hours (roughly 9:00–17:00), while other weekdays show activity spread across a wider range of hours into the evening.
+
+### Screenshot
+![Day-Hour Heatmap](excel_day_hour_heatmap.png)
